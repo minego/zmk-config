@@ -40,7 +40,7 @@
 &kp 1                  &ce LCTRL ESC  &kp A        &kp S        &kp D        &kp F  &kp G         /**/ &kp H     &kp J    &kp K     &kp L     &kp SEMI  &kp SQT        &kp RET
 &kp 1                  &kp LSHFT      &kp Z	       &kp X        &kp C        &kp V  &kp B         /**/ &kp N     &kp M    &kp COMMA &kp DOT   &kp FSLH                 &ce RSHFT UP
 // &kp 1 &kp 1 &kp 1      &mo 1          &kp LALT     &kp LGUI     &kp SPACE                         /**/ &kp SPACE                              &mo 1     &ce RALT LEFT  &ce RCTRL DOWN    &ce RCTRL RIGHT
-&kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 /**/ &kp N8 &kp N9 &kp N0 &KP N1 &kp N2
+&kp N1 &kp N2 &kp N3 &kp N4 &kp N5 &kp N6 &kp N7 /**/ &kp N8 &kp N9 &kp N0 &kp N1 &kp N2
             >;
         };
 
