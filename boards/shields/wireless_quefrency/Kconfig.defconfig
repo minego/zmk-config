@@ -2,7 +2,7 @@ if SHIELD_WIRELESS_QUEFRENCY_DONGLE
 
 # Max 16 characters in keyboard name
 config ZMK_KEYBOARD_NAME
-    default "Wireless Quefrency"
+    default "WL Quefrency"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
