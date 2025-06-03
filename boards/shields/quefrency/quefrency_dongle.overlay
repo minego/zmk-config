@@ -26,7 +26,7 @@
 			>;
 		};
 
-	zephyr_udc0: usbd@40027000 {
+	zephyr_udc0: usbd@deadbeef {
 		compatible = "vnd,usb-device";
 		status = "okay";
 	};
