@@ -13,10 +13,6 @@
         events = <0>;
     };
 
-	zephyr_udc0: &usbd {
-		status = "okay";
-	};
-
 	default_transform: keymap_transform_0 {
 			compatible = "zmk,matrix-transform";
 			columns = <15>;
@@ -37,5 +33,9 @@
         display-name = "Default Layout";
         transform = <&default_transform>;
     };
+};
+
+zephyr_udc0: &usbd {
+	status = "okay";
 };
 
