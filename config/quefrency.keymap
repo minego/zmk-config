@@ -11,11 +11,11 @@
 	- Modifiers in bottom left corner act as arrows when tapped, normal when held
 	- fn+modifiers in bottom left corner act as arrows
 
-	- fn+caps		= extra layer, arrows always on, caps is caps, ` is esc
-	- fn+tab		= defaut layer
-	- fn+backspace	= soft off
+	- fn+caps				= "normal" layer
+	- fn+tab				= defaut layer
+	- fn+shift-backspace	= soft off
 
-	The extra layer is intended to work as a "normal" keyboard as much as
+	The "normal" layer is intended to work as a "normal" keyboard as much as
 	possible, with the exception that the modifiers in the bottom left are only
 	used as arrow keys in this mode.
 */
@@ -27,7 +27,9 @@
 
 #define DEFAULT 0
 #define FN		1
-#define EXTRA	2
+#define FN2		2
+#define NORM	3
+#define BLANK	4
 
 /*
 &kscan0 {
@@ -65,37 +67,60 @@
 
         default_layer {
             bindings = <
-/* Left side */                                                                       /* Right side */                                                                             /* Dummy keys */
-&kp GRAVE      &kp N1       &kp N2       &kp N3       &kp N4 &kp N5 &kp N6      /* */ &kp N7    &kp N8   &kp N9    &kp N0    &kp MINUS &kp EQUAL      &kp BSPC               /* */ &none
-&kp TAB        &kp Q        &kp W        &kp E        &kp R  &kp T              /* */ &kp Y     &kp U    &kp I     &kp O     &kp P     &kp LBKT       &kp RBKT &kp BSLH      /* */ &none
-&ce LCTRL ESC  &kp A        &kp S        &kp D        &kp F  &kp G              /* */ &kp H     &kp J    &kp K     &kp L     &kp SEMI  &kp SQT        &kp RET                /* */ &none
-&kp LSHFT      &kp Z	    &kp X        &kp C        &kp V  &kp B              /* */ &kp N     &kp M    &kp COMMA &kp DOT   &kp FSLH                 &ce RSHFT UP           /* */ &none &none
-&mo FN         &kp LALT     &kp LGUI     &mo FN       &kp SPACE                 /* */ &kp SPACE &kp RGUI &ce RALT LEFT &none &ce RCTRL DOWN &ce RCTRL RIGHT
+/* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
+&kp GRAVE      &kp N1       &kp N2       &kp N3       &kp N4 &kp N5 &kp N6      /* */ &kp N7      &kp N8         &kp N9          &kp N0      &kp MINUS       &kp EQUAL      &kp BSPC               /* */ &none
+&kp TAB        &kp Q        &kp W        &kp E        &kp R  &kp T              /* */ &kp Y       &kp U          &kp I           &kp O       &kp P           &kp LBKT       &kp RBKT &kp BSLH      /* */ &none
+&ce LCTRL ESC  &kp A        &kp S        &kp D        &kp F  &kp G              /* */ &kp H       &kp J          &kp K           &kp L       &kp SEMI		 &kp SQT        &kp RET                /* */ &none
+&kp LSHFT      &kp Z	    &kp X        &kp C        &kp V  &kp B              /* */ &kp N       &kp M          &kp COMMA       &kp DOT     &kp FSLH        &ce RSHFT UP                          /* */ &none &none
+&mo FN         &kp LALT     &kp LGUI     &mo FN       &kp SPACE                 /* */ &kp SPACE   &kp RGUI       &ce RALT LEFT   &none       &ce RCTRL DOWN  &ce RCTRL RIGHT
             >;
         };
 
+		/* fn+<...> */
         fn_layer {
             bindings = <
-/* Left side */                                                                       /* Right side */                                                                             /* Dummy keys */
-&trans         &kp F1       &kp F2       &kp F3       &kp F4 &kp F5 &kp F6      /* */ &kp F7    &kp F8   &kp F9    &kp F10   &kp F11   &kp F12        &soft_off              /* */ &none
-&to DEFAULT    &trans       &trans		 &trans       &trans      &trans        /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans   &trans        /* */ &none
-&to EXTRA      &trans       &trans       &trans       &trans      &trans        /* */ &kp LEFT  &kp DOWN &kp UP    &kp RIGHT &trans    &trans         &trans                 /* */ &none
-&trans         &trans       &kp K_CUT    &kp K_COPY   &kp K_PASTE &trans        /* */ &trans    &trans   &trans    &trans    &trans                   &kp UP                 /* */ &none &none
-&trans         &trans       &trans       &trans       &trans                    /* */ &trans    &trans   &kp LEFT  &none     &kp DOWN  &kp RIGHT
+/* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
+&trans         &kp F1       &kp F2       &kp F3       &kp F4 &kp F5 &kp F6      /* */ &kp F7      &kp F8         &kp F9          &kp F10     &kp F11         &kp F12        &to DEFAULT            /* */ &none
+&to DEFAULT    &trans       &trans		 &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans   &trans        /* */ &none
+&to NORM       &trans       &trans       &trans       &trans      &trans        /* */ &kp LEFT    &kp DOWN       &kp UP          &kp RIGHT   &trans          &trans         &trans                 /* */ &none
+&mo FN2        &trans       &kp K_CUT    &kp K_COPY   &kp K_PASTE &trans        /* */ &trans      &trans         &trans          &trans      &trans          &kp UP                                /* */ &none &none
+&trans         &trans       &trans       &trans       &trans                    /* */ &trans      &trans         &kp LEFT        &none       &kp DOWN        &kp RIGHT
             >;
         };
 
-        extra_layer {
+		/* fn+shift+<...> */
+        fn2_layer {
             bindings = <
-/* Left side */                                                                       /* Right side */                                                                             /* Dummy keys */
-&kp ESC        &trans       &trans       &trans       &trans &trans &trans      /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans                 /* */ &none
-&trans         &trans       &trans		 &trans       &trans      &trans        /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans   &trans        /* */ &none
-&kp CLCK       &trans       &trans       &trans       &trans      &trans        /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans                 /* */ &none
-&trans         &trans       &trans       &trans       &trans      &trans        /* */ &trans    &trans   &trans    &trans    &trans                   &kp UP                 /* */ &none &none
-&kp LCTRL      &trans       &trans       &trans       &trans                    /* */ &trans    &trans   &kp LEFT  &none     &kp DOWN  &kp RIGHT
+/* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
+&trans         &trans       &trans       &trans       &trans &trans &trans      /* */ &trans      &trans         &trans          &trans      &trans          &trans         &soft_off              /* */ &none
+&trans         &trans       &trans		 &trans       &trans      &trans        /* */ &trans      &kp PG_UP      &trans          &trans      &trans          &trans         &trans   &trans        /* */ &none
+&trans         &trans       &trans       &kp PG_DN    &trans      &trans        /* */ &kp K_PREV  &kp K_VOL_DN   &kp K_VOL_UP    &kp K_NEXT  &trans          &trans         &trans                 /* */ &none
+&trans         &trans       &trans       &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans                                /* */ &none &none
+&trans         &trans       &trans       &trans       &kp K_PP                  /* */ &kp K_PP    &trans         &trans          &none       &trans          &trans
             >;
         };
 
+        normal_layer {
+            bindings = <
+/* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
+&kp ESC        &trans       &trans       &trans       &trans &trans &trans      /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans                 /* */ &none
+&trans         &trans       &trans		 &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans   &trans        /* */ &none
+&kp CAPSLOCK   &trans       &trans       &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans                 /* */ &none
+&trans         &trans       &trans       &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &kp UP                                /* */ &none &none
+&kp LCTRL      &trans       &trans       &trans       &trans                    /* */ &trans      &trans         &kp LEFT        &none       &kp DOWN        &kp RIGHT
+            >;
+        };
+
+        blank_layer {
+            bindings = <
+/* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
+&trans         &trans       &trans       &trans       &trans &trans &trans      /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans                 /* */ &none
+&trans         &trans       &trans		 &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans   &trans        /* */ &none
+&trans         &trans       &trans       &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans                 /* */ &none
+&trans         &trans       &trans       &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans                                /* */ &none &none
+&trans         &trans       &trans       &trans       &trans                    /* */ &trans      &trans         &trans          &none       &trans          &trans
+            >;
+        };
     };
 };
 
