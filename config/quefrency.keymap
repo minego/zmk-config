@@ -88,7 +88,7 @@
         extra_layer {
             bindings = <
 /* Left side */                                                                       /* Right side */                                                                             /* Dummy keys */
-&kp ESC        &trans       &trans       &trans       &trans &traans &trans     /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans                 /* */ &none
+&kp ESC        &trans       &trans       &trans       &trans &trans &trans      /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans                 /* */ &none
 &trans         &trans       &trans		 &trans       &trans      &trans        /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans   &trans        /* */ &none
 &kp CLCK       &trans       &trans       &trans       &trans      &trans        /* */ &trans    &trans   &trans    &trans    &trans    &trans         &trans                 /* */ &none
 &trans         &trans       &trans       &trans       &trans      &trans        /* */ &trans    &trans   &trans    &trans    &trans                   &kp UP                 /* */ &none &none
