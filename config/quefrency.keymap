@@ -31,13 +31,6 @@
 #define NORM	3
 #define BLANK	4
 
-/*
-&kscan0 {
-    debounce-press-ms = <35>;
-    debounce-release-ms = <5>;
-};
-*/
-
 / {
 	behaviors {
 		ce: caps_to_esc {
