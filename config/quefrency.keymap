@@ -79,7 +79,7 @@
             hold-trigger-on-release;
         };
 
-        hll: home_row_mod_left {
+        hll: home_row_layer_left {
             compatible					= "zmk,behavior-hold-tap";
             #binding-cells				= <2>;
             flavor						= "balanced";
@@ -90,7 +90,7 @@
             hold-trigger-key-positions	= < KEYS_R >;
             hold-trigger-on-release;
         };
-        hlr: home_row_mod_right {
+        hlr: home_row_layer_right {
             compatible					= "zmk,behavior-hold-tap";
             #binding-cells				= <2>;
             flavor						= "balanced";
