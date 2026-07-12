@@ -26,10 +26,11 @@
 #include <dt-bindings/zmk/keys.h>
 
 #define DEFAULT 0
-#define FN		1
-#define FN2		2
-#define NORM	3
-#define BLANK	4
+#define MODS	1
+#define FN		2
+#define FN2		3
+#define NORM	4
+#define BLANK	5
 
 / {
 	behaviors {
@@ -58,6 +59,9 @@
 // NOTE The original quefrency board has a number of optional keys, so I have
 // set the keys that don't exist in my physical hardware to &none
 
+#define HRML(k1, k2, k3, k4, k5) &sht LSHIFT k1		&ht_alt 0 k2	&ht_ctl 0 k3	&ht_gui 0 k4	&lt MODS k5
+#define HRMR(k1, k2, k3, k4, k5) &lt MODS k1		&ht_gui 0 k2	&ht_ctl 0 k3	&ht_alt 0 k4	&sht RSFT k5
+
         default_layer {
             bindings = <
 /* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
@@ -69,13 +73,24 @@
             >;
         };
 
+		mod_layer {
+            bindings = <
+/* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
+&trans         &trans       &trans       &trans       &trans &trans &trans      /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans			       /* */ &none
+&trans	       &trans       &trans		 &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans   &trans        /* */ &none
+&trans         &trans       &trans       &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans                 /* */ &none
+&trans         HMRL(A,      S,           D,           F,          G)            /* */ HMRR(H,     J,             K,              L,          SEMI)           &trans                                /* */ &none &none
+&trans         &trans       &trans       &trans       &trans                    /* */ &trans      &trans         &trans          &none       &trans          &trans
+            >;
+        };
+
 		/* fn+<...> */
         fn_layer {
             bindings = <
 /* Left side */                                                                       /* Right side */                                                                                         /* Dummy keys */
 &trans         &kp F1       &kp F2       &kp F3       &kp F4 &kp F5 &kp F6      /* */ &kp F7      &kp F8         &kp F9          &kp F10     &kp F11         &kp F12        &to DEFAULT            /* */ &none
 &to DEFAULT    &trans       &trans		 &trans       &trans      &trans        /* */ &trans      &trans         &trans          &trans      &trans          &trans         &trans   &trans        /* */ &none
-&to NORM       &trans       &trans       &trans       &trans      &trans        /* */ &kp LEFT    &kp DOWN       &kp UP          &kp RIGHT   &trans          &trans         &trans                 /* */ &none
+&to NORM       &trans       &trans       &trans       &trans      &trans        /* */ &kp LEFT    &kp DOWN       &kp UP          &kp RIGHT   &trans          &trans         &to MODS               /* */ &none
 &mo FN2        &trans       &kp K_CUT    &kp K_COPY   &kp K_PASTE &trans        /* */ &trans      &trans         &trans          &trans      &trans          &kp UP                                /* */ &none &none
 &trans         &trans       &trans       &trans       &trans                    /* */ &trans      &trans         &kp LEFT        &none       &kp DOWN        &kp RIGHT
             >;
